@@ -25,6 +25,8 @@ async function main () {
   const NFTSS = await ethers.getContractFactory('NFTSS');
   console.log('Deploying NFTSS...');
   const nftmarket = await upgrades.deployProxy(NFTSS, { initializer: 'initialize' }); //[put parameters if necessary]
+
+ await nftmarket.waitForDeployment();
   console.log('NFTSS deployed to:', await nftmarket.getAddress());
 }
 
