@@ -54,6 +54,8 @@ address owner;
 uint price;
 string uri;
 bool isSold;
+
+uint tokenId;
   }
 
 
@@ -85,7 +87,7 @@ bool isSold;
 function _createMarketItem( string memory uri,uint price,uint tokenId) public   {
 
            listedTokens[tokenId]=NFT(address(msg.sender),address(this),
-          price,uri,false);
+          price,uri,false,tokenId);
 
 emit Added(listedTokens[tokenId]);
 
