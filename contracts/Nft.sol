@@ -109,9 +109,10 @@ emit Added(listedTokens[tokenId]);
 
 // }
 
-function sellNFT(uint tokenId) public payable {
+function buyNft(uint tokenId) public payable {
   // Check if NFT is already sold
   require(listedTokens[tokenId].isSold == false, "NFT already sold");
+  require(msg.value>charges,"Isufficient balance");
 
   // Get price and seller address
   uint price = listedTokens[tokenId].price;
@@ -141,7 +142,7 @@ function sellNFT(uint tokenId) public payable {
 
 
 
-function getAllNftOfOwner() public view returns (NFT[] memory) {
+function totalNFTs() public view returns (NFT[] memory) {
 
 
 uint total=balanceOf(address(this));
@@ -155,18 +156,8 @@ console.log(total);
     }
     return nfts;
 }
-/*
-function getAllNftOfOwner() public view returns (NFT[] memory) {
-    uint total = balanceOf(msg.sender);
-    NFT[] memory nfts = new NFT[](total);
 
-    for (uint i = 0; i < total; i++) {
-        uint tokenId = tokenOfOwnerByIndex(msg.sender, i);
-        nfts[i] = listedTokens[tokenId];
-    }
 
-    return nfts;
-}*/
 
 
 function tokenURI(uint256 tokenId)
